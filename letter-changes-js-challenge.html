@@ -1,0 +1,63 @@
+<!-- CHALLENGE: Have the function LetterChanges(str) take the str parameter being passed and modify it using the following algorithm. Replace every letter in the string with the letter following it in the alphabet (ie. c becomes d, z becomes a). Then capitalize every vowel in this new string (a, e, i, o, u) and finally return this modified string.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Letter Changes JS Challenge</title>
+</head>
+<body>
+  
+  <script>
+
+    function letterChanges(str){
+      // Define variables
+      let currentASCII= '';
+      let modifiedString = '';
+      let modifiedChar = '';
+
+      for (let i = 0; i < str.length ; i++){
+        let currentChar = str.charAt(i);
+        // Check if character is a letter
+        if (currentChar.toUpperCase() != currentChar.toLowerCase()){
+
+          // if character is z or Z change to A
+          if (currentChar === 'z' || currentChar === 'Z'){
+            modifiedChar = 'A';
+          } else {
+            // Covert character to ASCII
+            currentASCII = str.charCodeAt(i);
+            // Add +1 to ASCII to go to next letter
+            modifiedChar = String.fromCharCode(currentASCII+1);
+          }
+          
+
+          // If vowel change to caps
+          if (modifiedChar === 'a' || modifiedChar === 'e' || modifiedChar === 'i' || modifiedChar === 'o' || modifiedChar === 'u'){
+            modifiedChar = modifiedChar.toUpperCase();
+          }
+
+          modifiedString += modifiedChar;
+
+        } else {
+          // If char is not letter add to string without changing
+          modifiedString += currentChar;
+          }
+        
+
+      } //end for loop
+
+      return modifiedString;
+
+    } //end function
+
+    // testing the function in console to make sure it works
+    console.log(letterChanges("Zzhello*3"));
+    console.log(letterChanges("fun times!"));
+   
+  </script>
+
+</body>
+</html>
